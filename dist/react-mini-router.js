@@ -171,6 +171,9 @@ var ReactMiniRouter =
 	            // since they happen at the end of the bubbling phase. (Allows an onClick prop to
 	            // work correctly on the event target <a/> component.)
 	            setTimeout(function() {
+	                if (evt.stopNavigation) {
+	                    return
+	                }
 	                var pathWithSearch = url.pathname + (url.search || '');
 	                if (pathWithSearch.length === 0) pathWithSearch = '/';
 
