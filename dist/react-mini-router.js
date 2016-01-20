@@ -1,4 +1,4 @@
-/*! ReactMiniRouter 1.2.0 - https://github.com/larrymyers/react-mini-router */
+/*! ReactMiniRouter 2.0.0 - https://github.com/larrymyers/react-mini-router */
 var ReactMiniRouter =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -64,6 +64,7 @@ var ReactMiniRouter =
 	    detect = __webpack_require__(11);
 
 	var PropValidation = {
+	    pathHistory: React.PropTypes.arrayOf(React.PropTypes.string),
 	    path: React.PropTypes.string,
 	    root: React.PropTypes.string,
 	    useHistory: React.PropTypes.bool
@@ -79,6 +80,7 @@ var ReactMiniRouter =
 
 	    getChildContext: function() {
 	        return {
+	            pathHistory: this.state.pathHistory,
 	            path: this.state.path,
 	            root: this.state.root,
 	            useHistory: this.state.useHistory
@@ -93,6 +95,7 @@ var ReactMiniRouter =
 
 	    getInitialState: function() {
 	        return {
+	            pathHistory: [],
 	            path: getInitialPath(this),
 	            root: this.props.root || this.context.path || '',
 	            useHistory: (this.props.history || this.context.useHistory) && detect.hasPushState
@@ -132,7 +135,7 @@ var ReactMiniRouter =
 
 	        if (path.length === 0) path = '/';
 
-	        this.setState({ path: path + url.search });
+	        this.setState({ pathHistory: this.state.pathHistory.concat([this.state.path]), path: path + url.search });
 	    },
 
 	    renderCurrentRoute: function() {
@@ -180,7 +183,7 @@ var ReactMiniRouter =
 	                    window.location.hash = '!' + pathWithSearch;
 	                }
 
-	                self.setState({ path: pathWithSearch});
+	                self.setState({ pathHistory: self.state.pathHistory.concat([self.state.path]), path: pathWithSearch});
 	            }, 0);
 	        }
 	    },
