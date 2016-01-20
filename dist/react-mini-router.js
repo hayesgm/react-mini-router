@@ -1,4 +1,4 @@
-/*! ReactMiniRouter 1.2.0 - https://github.com/larrymyers/react-mini-router */
+/*! ReactMiniRouter 2.0.0 - https://github.com/larrymyers/react-mini-router */
 var ReactMiniRouter =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -171,6 +171,9 @@ var ReactMiniRouter =
 	            // since they happen at the end of the bubbling phase. (Allows an onClick prop to
 	            // work correctly on the event target <a/> component.)
 	            setTimeout(function() {
+	                if (evt.stopNavigation) {
+	                    return
+	                }
 	                var pathWithSearch = url.pathname + (url.search || '');
 	                if (pathWithSearch.length === 0) pathWithSearch = '/';
 

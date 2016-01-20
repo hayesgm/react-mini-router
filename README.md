@@ -141,6 +141,10 @@ If you want to update the address bar url, but not trigger routing:
 
     navigate('/foo', true);
 
+## Click Handlers
+
+React Mini Router captures all clicks for anchor tags mounted below the router. If a click on an anchor tag would change the page route, React Mini Router will instead navigate to that page by changing state (and performing the `pushState` or fragment change). You can disable this behavior in a React `onClick` handler by setting `event.nativeEvent.stopNavigation = true`.
+
 ## Server Rendering
 
 See the [example](./example) app for how to approach server rendering. The short answer
