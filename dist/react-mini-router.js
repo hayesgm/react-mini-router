@@ -1,4 +1,4 @@
-/*! ReactMiniRouter 1.2.0 - https://github.com/larrymyers/react-mini-router */
+/*! ReactMiniRouter 2.0.0 - https://github.com/larrymyers/react-mini-router */
 var ReactMiniRouter =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -259,6 +259,10 @@ var ReactMiniRouter =
 	    }
 
 	    if (!!elt.attributes.download) {
+	        return;
+	    }
+
+	    if (elt.attribues['data-direct']) {
 	        return;
 	    }
 
